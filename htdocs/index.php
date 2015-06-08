@@ -119,6 +119,11 @@ if (!$methodName) {
 // アプリケーションクラス読み込み
 require(FEGG_DIR . '/Application.php');
 
+// 拡張アプリケーションクラス読み込み
+if (file_exists(FEGG_DIR . '/MY_Application.php')) {
+    require_once(FEGG_DIR . '/MY_Application.php');
+}
+
 // 最終的に呼び出すクラスファイルの存在チェックとrequireを行う
 $classInstance = '';
 if (file_exists(FEGG_CODE_DIR . '/application/' . $tempPath . $fileName . '.php')) {

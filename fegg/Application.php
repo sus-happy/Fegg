@@ -320,6 +320,8 @@ class Application
                 '/ *\{\{\s*end section (\w+)\s*\}\}\s*/i' => '<?php }} section_$1($assignedValue); ?>',
                 '/ *\{\{\s*head\s*\}\}\s*/i' => '<?php if (isset($head)) { $assignedClass[\'app\'] = FEGG_getInstance(); foreach($head as $key => $value) { $assignedClass[\'app\']->setCurrentTemplateDirectory($value[\'dir\']); $assignedClass[\'app\']->displayTemplate($value[\'file\'], $assignedValue); } } ?>',
                 '/ *\{\{\s*include\s+head\s+\'([\w\/\.]+)\'\s*\}\}\s*/i' => '<?php if (isset($head)) { array_unshift($head, array( \'file\'=>\'$1\', \'dir\'=>\''.$currentDir.'\' )); } else { $head[] = array( \'file\'=>\'$1\', \'dir\'=>\''.$currentDir.'\' ); } ?>',
+                '/ *\{\{\s*foot\s*\}\}\s*/i' => '<?php if (isset($foot)) { $assignedClass[\'app\'] = FEGG_getInstance(); foreach($foot as $key => $value) { $assignedClass[\'app\']->setCurrentTemplateDirectory($value[\'dir\']); $assignedClass[\'app\']->displayTemplate($value[\'file\'], $assignedValue); } } ?>',
+                '/ *\{\{\s*include\s+foot\s+\'([\w\/]+)\'\s*\}\}\s*/i' => '<?php if (isset($foot)) { array_unshift($foot, array( \'file\'=>\'$1\', \'dir\'=>\''.$currentDir.'\' )); } else { $foot[] = array( \'file\'=>\'$1\', \'dir\'=>\''.$currentDir.'\' ); } ?>',
                 '/ *\{\{\s*include\s+\'([\w\/\.]+)\'\s*\}\}\s*/i' => '<?php $assignedClass[\'app\'] = FEGG_getInstance(); $assignedClass[\'app\']->setCurrentTemplateDirectory(\''.$currentDir.'\'); $assignedClass[\'app\']->displayTemplate(\'$1\', $assignedValue); ?>',
                 '/ *\{\{\s*include\s+html\s+\'([^\s]+)\'\s*\}\}\s*/i' => '<?php include(FEGG_HTML_DIR . \'$1\'); ?>',
                 '/ *\{\{\s*assign\s+(\$[\w\.\[\]\$]+)\s*=\s*(\s*[^\{]+)\s*\}\}\s*/i' => '<?php $1 = $2 ?>',
