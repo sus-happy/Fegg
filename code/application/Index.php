@@ -4,7 +4,7 @@
  * URLにルートが指定されたときに呼び出されるデフォルトのクラス。
  * 必須ではないが、システムの初期ページは Index.php に記載することを推奨。
  */
-class Index extends Application
+class Index extends MY_Application
 {
     /**
      * コンストラクタ
